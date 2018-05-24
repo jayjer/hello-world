@@ -9,3 +9,5 @@ https://www.zhihu.com/question/20070065
 爬虫https://morvanzhou.github.io/tutorials/data-manipulation/scraping/1-00-why/
 
 https://github.com/pro648/tips/wiki/%E6%95%99%E4%BD%A0%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0Git
+
+http://www.cnblogs.com/xdp-gacl/p/3729033.html
