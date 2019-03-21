@@ -1,7 +1,6 @@
 master test
 wo  yyyyy
-<<<<<<< HEAD
-=======
+
 aaaa
 bbb1
 bbb2
@@ -12,5 +11,3 @@ xx1
 xx2
 xx3
 xx4
-
->>>>>>> 69162f0... xx4
