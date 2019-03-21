@@ -1,15 +1,2 @@
 master test
 wo  yyyyy
-
-add 1
-aaaa
-bbb1
-bbb2
-bbb3
-bbb4
-
-xx1
-xx2
-xx3
-xx4
-
