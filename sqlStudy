@@ -4,8 +4,10 @@ group by （分组相关）
 having （分组后过滤数据）
 各种表连接
 子查询（ IN ，EXISTS ，ANY，ALL） 可参考 https://blog.csdn.net/pan_junbiao/article/details/86006839    网址
-行列转换 （oracle中使用）（mysql中通过groupby 子查询实现 ）可参考 https://www.cnblogs.com/SeaSky0606/p/4591135.html     网址
-行列转换例子：
+行列转换 （oracle中使用pivot函数来实现）（mysql中通过groupby 子查询实现 ）可参考 https://www.cnblogs.com/SeaSky0606/p/4591135.html     网址
+ 2#sql 相关总结 可参考https://blog.csdn.net/wang1127248268/article/details/53406564    网址
+ 3# 常见的例子
+（1）行列转换例子：
  SELECT
  t.c2 AS 课程
  , SUM(CASE WHEN t.c1='甲' THEN t.c3 ELSE 0 END ) AS 甲
@@ -17,6 +19,46 @@ having （分组后过滤数据）
       SELECT name as c1,'English' as c2,MAX(English) as c3 FROM score GROUP BY name
       ) AS t
  GROUP BY c2;
- 2#sql 相关总结 可参考https://blog.csdn.net/wang1127248268/article/details/53406564    网址
- 
- 
+
+(2) 分页查询例子
+SELECT
+*
+FROM
+table
+LIMIT 1  --获取的件数
+OFFSET 1 --跳过的件数
+
+(3) 开窗函数 可参照https://www.cnblogs.com/xinaixia/p/5806217.html 网址
+(排序)
+基本语法 
+-- 排序函数 over([分组子句] 排序子句[desc][asc])
+-- 分组子句 partition by 分组列名, 分组列名
+-- 排序子句 order by 列名, 列名
+
+常见的排序函数：
+ROW_NUMBER()：为每一组的行记录按顺序生成一个唯一的行号。
+RANK():也为每一组的行生成一个序号，与ROW_NUMBER()不同的是如果按照ORDER BY的排序，
+如果有相同的值会生成相同的序号，并且接下来的序号是不连序的。例如两个相同的行生成序号3，那么接下来会生成序号5。
+DENSE_RANK(): 和RANK（）类似，不同的是如果有相同的序号，那么接下来的序号不会间断。
+也就是说如果两个相同的行生成序号3，那么接下来生成的序号还是4。
+NTILE (integer_expression) 按照指定的数目将数据进行分组，并为每一组生成一个序号。 
+例句：
+NTILE（2） over(order by  列名)是将取到的数据 分成2分 如果数据一共有3条， 这时候第一，第二条生成的序号是1 ，第三条的序号是2。
+
+(聚合)
+ 基本语法 
+-- 聚合函数() OVER ([分组子句]) 
+-- 分组子句 partition by 分组列名, 分组列名
+
+常见的聚合函数：
+COUNT(*):获取每组的件数
+SUM(列名)：获取每组数据对应的列名字段的合计值 （这边对应的字段一定是数字型相关的字段）
+AVG(列名)：获取每组数据对应的列名字段的平均值 （这边对应的字段一定是数字型相关的字段）
+MAX(列名)：获取每组数据对应的列名字段的最大的值
+MIN(列名)：获取每组数据对应的列名字段的最小的值
+
+@注 在这边聚合函数是和partition by连起来使用 ，其实聚合函数更加频繁的是和group by连起来使用。
+
+(4)集合运算
+
+
