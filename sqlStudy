@@ -1,0 +1,22 @@
+SQL相关知识
+1#相关的积累
+group by （分组相关）
+having （分组后过滤数据）
+各种表连接
+子查询（ IN ，EXISTS ，ANY，ALL） 可参考 https://blog.csdn.net/pan_junbiao/article/details/86006839    网址
+行列转换 （oracle中使用）（mysql中通过groupby 子查询实现 ）可参考 https://www.cnblogs.com/SeaSky0606/p/4591135.html     网址
+行列转换例子：
+ SELECT
+ t.c2 AS 课程
+ , SUM(CASE WHEN t.c1='甲' THEN t.c3 ELSE 0 END ) AS 甲
+ , SUM(CASE WHEN t.c1='乙' THEN t.c3 ELSE 0 END ) AS 乙
+ , SUM(CASE WHEN t.c1='丙' THEN t.c3 ELSE 0 END ) AS 丙
+ FROM (
+      SELECT name as c1,'Math' as c2,MAX(Math) as c3 FROM score GROUP BY name
+      UNION 
+      SELECT name as c1,'English' as c2,MAX(English) as c3 FROM score GROUP BY name
+      ) AS t
+ GROUP BY c2;
+ 2#sql 相关总结 可参考https://blog.csdn.net/wang1127248268/article/details/53406564    网址
+ 
+ 
