@@ -1,9 +1,23 @@
 SQL相关知识
+基础简单的连表
+-- 简化联接查询
+select s.id, s.name, c.id, c.name from student s, classes c where s.cid = c.id;
+-- 左连接 (左为基表)
+select s.id, s.name, c.id, c.name from student s left join classes c on s.cid = c.id;
+-- 右连接 (右为基表)
+select s.id, s.name, c.id, c.name from student s right join classes c on s.cid = c.id;
+-- 内连接 (等值联合)
+select s.id, s.name, c.id, c.name from student s inner join classes c on s.cid = c.id;
+-- 交叉联接查询，结果是一个笛卡儿乘积
+select s.id, s.name, c.id, c.name from student s ,classes c
+-- 自连接
+select distinct s.* from student s, student s1 where s.id <> s1.id and s.sex = s1.sex;
 1#相关的积累
 group by （分组相关）
 having （分组后过滤数据）
 各种表连接
 子查询（ IN ，EXISTS ，ANY，ALL） 可参考 https://blog.csdn.net/pan_junbiao/article/details/86006839    网址
+推荐使用 EXISTS > ANY > IN
 行列转换 （oracle中使用pivot函数来实现）（mysql中通过groupby 子查询实现 ）可参考 https://www.cnblogs.com/SeaSky0606/p/4591135.html     网址
  2#sql 相关总结 可参考https://blog.csdn.net/wang1127248268/article/details/53406564    网址
  3# 常见的例子
@@ -60,5 +74,34 @@ MIN(列名)：获取每组数据对应的列名字段的最小的值
 @注 在这边聚合函数是和partition by连起来使用 ，其实聚合函数更加频繁的是和group by连起来使用。
 
 (4)集合运算
+-- union 并集、不重复
+select id, name from student where name like 'ja%'
+union 
+select id, name from student where id = 4;
 
+-- union all 并集、重复
+select * from student where name like 'ja%'
+union all 
+select * from student;
+
+-- 交集（相同部分）
+select * from student where name like 'ja%'
+intersect 
+select * from student;
+
+-- 补集（除相同部分）
+select * from student where name like 'ja%'
+except 
+select * from student where name like 'jas%';
+
+(5)公式表表达式
+查询表的时候，有时候中间表需要重复使用，这些子查询被重复查询调用，不但效率低，而且可读性低，
+不利于理解。那么公式表表达式可以解决这个问题.
+with statNum(id, num) as 
+(
+    select cid, count(*) from student where id > 0 group by cid
+)
+select id, num from statNum order by id;
+使用with定义暂时表（临时结果集），来让后面可以进行相关的操作。
+(6)函数由于数据库不同，对应的函数也会有变化。
 
