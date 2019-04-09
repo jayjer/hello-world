@@ -12,3 +12,6 @@ https://github.com/pro648/tips/wiki/%E6%95%99%E4%BD%A0%E7%B3%BB%E7%BB%9F%E5%AD%A
 
 http://www.cnblogs.com/xdp-gacl/p/3729033.html
 add my test
+
+java8 流操作中进行计数。
+https://www.oschina.net/question/1989096_177524?sort=time
