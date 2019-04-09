@@ -104,4 +104,6 @@ with statNum(id, num) as
 select id, num from statNum order by id;
 使用with定义暂时表（临时结果集），来让后面可以进行相关的操作。
 (6)函数由于数据库不同，对应的函数也会有变化。
+(7)使用 explain analyze 来进行对对应的sql 文进行相关的性能的解析。
+相关的介绍的网址： https://blog.csdn.net/kmblack1/article/details/80761647 网址
 
