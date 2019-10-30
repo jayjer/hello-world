@@ -106,4 +106,15 @@ select id, num from statNum order by id;
 (6)函数由于数据库不同，对应的函数也会有变化。
 (7)使用 explain analyze 来进行对对应的sql 文进行相关的性能的解析。
 相关的介绍的网址： https://blog.csdn.net/kmblack1/article/details/80761647 网址
+(8)PostgreSQL的upsert功能(insert on conflict do)的用法
+INSERT INTO table--表名 ( 字段，字段)VALUES ( 字段值，字段值 ) 
+ON CONFLICT ( pr_key_cd--主键 ) DO
+UPDATE 
+	SET 字段 = 更新值
+WHERE
+更新条件
+RETURNING 字段 as 别名 
+--returning 用于返回 类似执行后的select
+相关的网址:https://blog.csdn.net/weixin_38883338/article/details/100897511
+	
 
